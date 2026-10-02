@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Linkedin, Copy, Check, ExternalLink, Sparkles, Download, ArrowDown, Award, Briefcase } from 'lucide-react';
 import { contactInfo, keyAccomplishments } from '../data/portfolioData';
+import profileImage from '../assets/Profile.jpeg';
 
 interface HeroSectionProps {
   onOpenResumeModal: () => void;
@@ -10,7 +11,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResumeModal }) =
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
   const [customPhotoUrl, setCustomPhotoUrl] = useState<string>(() => {
-    return localStorage.getItem('glenn_margolis_custom_avatar') || '/Profile.jpeg';
+    const storedPhotoUrl = localStorage.getItem('glenn_margolis_custom_avatar');
+    return storedPhotoUrl && storedPhotoUrl !== '/Profile.jpeg' ? storedPhotoUrl : profileImage;
   });
 
   const handleCopyEmail = () => {
